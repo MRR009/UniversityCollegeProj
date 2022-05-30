@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.stg.entity.College;
+import com.stg.entity.Stream;
 import com.stg.exception.CustomExcepHandler;
 
 public interface CollegeService {

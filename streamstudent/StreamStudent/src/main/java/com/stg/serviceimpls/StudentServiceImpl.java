@@ -39,10 +39,10 @@ public class StudentServiceImpl implements StudentService {
 	/*---------------------------------------READ---------------------------------------------------- */
 
 	@Override
-	public Student readyByStudentRollNo(String rollNo) throws CustomExcepHandler {
+	public Student readyByStudentUsername(String username) throws CustomExcepHandler {
 
-		if (studentRepository.findByStudentRollNo(rollNo) != null) {
-			return studentRepository.findByStudentRollNo(rollNo);
+		if (studentRepository.findByStudentUsername(username) != null) {
+			return studentRepository.findByStudentUsername(username);
 		} else {
 			throw new CustomExcepHandler("Student With this roll number not found");
 		}
@@ -83,7 +83,7 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public Student updateStudentPassword(String rollNo, String password) throws CustomExcepHandler {
 
-		Student student = studentRepository.findByStudentRollNo(rollNo);
+		Student student = studentRepository.findByStudentUsername(rollNo);
 		if (student != null) {
 			student.setStudentPassword(password);
 			return studentRepository.save(student);
@@ -96,10 +96,10 @@ public class StudentServiceImpl implements StudentService {
 	/*---------------------------------------DELETE---------------------------------------------------- */
 	@Transactional
 	@Override
-	public String removeStudentByRollNo(String rollNo) throws CustomExcepHandler {
-		if (studentRepository.findByStudentRollNo(rollNo) != null) {
-			String studName = studentRepository.findByStudentRollNo(rollNo).getStudentName();
-			studentRepository.removeByStudentRollNo(rollNo);
+	public String removeStudentByUsername(String username) throws CustomExcepHandler {
+		if (studentRepository.findByStudentUsername(username) != null) {
+			String studName = studentRepository.findByStudentUsername(username).getStudentName();
+			studentRepository.deleteByStudentUsername(username);
 			return "Student " + studName + "data with removed";
 		} else {
 			throw new CustomExcepHandler("Student not deleted, could not found student");

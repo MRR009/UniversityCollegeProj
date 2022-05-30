@@ -9,7 +9,7 @@ public interface StudentService {
 	
 	public abstract Student createStudent(Student student)throws CustomExcepHandler;
 	
-	public abstract Student readyByStudentRollNo(String rollNo)throws CustomExcepHandler;
+	public abstract Student readyByStudentUsername(String username)throws CustomExcepHandler;
 	
 	public abstract List<Student> getAllStudents()throws CustomExcepHandler;
 	
@@ -17,5 +17,6 @@ public interface StudentService {
 	
 	public abstract Student updateStudentPassword(String rollNo , String password)throws CustomExcepHandler;
 
-	public abstract String removeStudentByRollNo(String rollNo)throws CustomExcepHandler;
+	public abstract String removeStudentByUsername(String username)throws CustomExcepHandler;
+	
 }

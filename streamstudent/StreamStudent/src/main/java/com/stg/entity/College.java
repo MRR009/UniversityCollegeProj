@@ -1,8 +1,6 @@
 package com.stg.entity;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -18,52 +16,36 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 @Entity
+@Data
 public class College {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Getter
-	@Setter
 	private int collegeId;
 
 	@Column(length = 6)
-	@Getter
-	@Setter
 	private String collegeCode;
 
 	@Column(length = 60)
-	@Getter
-	@Setter
 	private String collegeName;
 
 	@Column(length = 7)
-	@Getter
-	@Setter
 	private String collegeType;
 
 	@Column(length = 35)
-	@Getter
-	@Setter
 	private String collegeLocation;
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE, CascadeType.REFRESH })
 	@JoinColumn(name = "uni_code", referencedColumnName = "universityId", nullable = false)
 	@JsonBackReference
-	@Getter
-	@Setter
 	private University university;
 
-	
 	@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
 	@JoinTable(name = "collegestreamjunc", joinColumns = @JoinColumn(name = "collegeId"), inverseJoinColumns = @JoinColumn(name = "streamId"))
-	@Getter
-	@Setter
 	private Set<Stream> streamsInCollege = new HashSet<Stream>();
 
 	public College() {
@@ -81,7 +63,5 @@ public class College {
 		this.university = university;
 		this.streamsInCollege = streamsInCollege;
 	}
-
-	
 
 }

@@ -15,7 +15,7 @@ public interface StreamService {
 	
 	public abstract List<Stream> getAllStreams()throws CustomExcepHandler;
 	
-	public abstract Stream updateStream(Stream Stream)throws CustomExcepHandler; 
+	public abstract Stream updateStream(Stream Stream)throws CustomExcepHandler;  
 	
 	public abstract Stream upateStreamNameByCode(String streamCode, String changedname)throws CustomExcepHandler;
 	

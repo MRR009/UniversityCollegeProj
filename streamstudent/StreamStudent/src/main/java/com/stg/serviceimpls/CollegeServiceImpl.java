@@ -47,6 +47,8 @@ public class CollegeServiceImpl implements CollegeService {
 		College tempCollege = null;
 		College college = collegeRepository.findByCollegeCode(CollegeCode);
 		Stream stream = streamRepository.findByStreamCode(streamCode);
+		
+		if(college.getStreamsInCollege().contains(stream)) {
 		for (Stream stream2 : college.getStreamsInCollege()) {
 			if (stream2.getStreamCode().equalsIgnoreCase(streamCode)) {
 				throw new CustomExcepHandler("Stream with this Code Already Exists");
@@ -55,13 +57,23 @@ public class CollegeServiceImpl implements CollegeService {
 				stream.getCollegesWithStream().add(college);
 				tempCollege = collegeRepository.save(college);
 			}
+		}} else {
+			college.getStreamsInCollege().add(stream);
+			stream.getCollegesWithStream().add(college);
+			tempCollege = collegeRepository.save(college);
 		}
 
 		if (tempCollege != null) {
 			return tempCollege;
-		} else {
+		} else{
 			throw new CustomExcepHandler("Cant do this operation");
 		}
+
+		/*
+		 * college.getStreamsInCollege().add(stream);
+		 * stream.getCollegesWithStream().add(college); tempCollege =
+		 * collegeRepository.save(college); return tempCollege;
+		 */
 
 	}
 

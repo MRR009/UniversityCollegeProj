@@ -13,31 +13,31 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 @Entity
+@Data
 public class University {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Getter @Setter private int universityId;
-	
+	private int universityId;
+
 	@Column(length = 6)
-	@Getter @Setter private String universityCode;
-	
+	private String universityCode;
+
 	@Column(length = 60)
-	@Getter @Setter private String universityName;
-	
+	private String universityName;
+
 	@Column(length = 35)
-	@Getter @Setter private String universityLocation;
-	
+	private String universityLocation;
+
 	@Column(length = 35)
-	@Getter @Setter private String specialization;
-	
+	private String specialization;
+
 	@JsonManagedReference
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "university")
-	@Getter @Setter private List<College> colleges;
+	private List<College> colleges;
 
 	public University() {
 		super();

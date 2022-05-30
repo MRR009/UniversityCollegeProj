@@ -32,8 +32,8 @@ public class StudentController {
 	/*---------------------------------------READ---------------------------------------------------- */
 
 	@GetMapping(value = "getbyrollno")
-	public Student readStudentByRollNo(@RequestParam String rollNo) {
-		return studentService.readyByStudentRollNo(rollNo);
+	public Student readStudentByUsername(@RequestParam String username) {
+		return studentService.readyByStudentUsername(username);
 	}
 
 	@GetMapping(value = "getall")
@@ -57,7 +57,7 @@ public class StudentController {
 	/*---------------------------------------DELETE---------------------------------------------------- */
 	
 	@DeleteMapping(value = "deletebycode")
-	public String deleteStudentByRollNo(@RequestParam String rollNo) {
-		return studentService.removeStudentByRollNo(rollNo);
+	public String deleteStudentByUsername(@RequestParam String username) {
+		return studentService.removeStudentByUsername(username);
 	}
 }
